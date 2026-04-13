@@ -1,0 +1,17 @@
+For reference, these are the transaction fields that we are currently storing in our spreadsheets:
+
+- First Name
+- Last Name
+- Street Address
+- City
+- State
+- Zip
+- Email
+- Amount
+- Beneficiary
+- Donation Date
+- Column3
+- Country
+- Business Name
+- Title
+- CC Last 4 Digits #
