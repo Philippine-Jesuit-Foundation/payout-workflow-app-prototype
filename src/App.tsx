@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 type BillingAddress = {
   line1: string;
@@ -58,8 +58,6 @@ type EmailFormObject = {
   message: string;
   acknowledgmentLetter: string | null;
 };
-
-type StepKey = "customer" | "acknowledgment" | "email";
 
 type TransactionWorkflowState = {
   currentStep: 1 | 2 | 3;

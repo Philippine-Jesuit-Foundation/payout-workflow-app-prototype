@@ -12,6 +12,12 @@
   3. Fill in Email to send to person.
 - The final third steps marks the transaction as complete
 
+# Deploying to Github Pages:
+
+`npm run deploy`
+
+Followed this tutorial: https://www.youtube.com/watch?v=hn1IkJk24ow
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
