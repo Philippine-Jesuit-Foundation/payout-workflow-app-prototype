@@ -1,4 +1,4 @@
-For reference, these are the transaction fields that we are currently storing in our spreadsheets:
+For reference, these are the quantum gateway (our past processor) transaction fields that we are currently storing in our spreadsheets:
 
 - First Name
 - Last Name
@@ -15,3 +15,5 @@ For reference, these are the transaction fields that we are currently storing in
 - Business Name
 - Title
 - CC Last 4 Digits #
+
+Our new application will have different fields stored in spreadsheets that are in line with stripe fields. This is a part of what our payout workflow application will be recording.
