@@ -199,6 +199,12 @@ export default function MultiStepTransactionFormPrototype() {
     );
   });
 
+  const [footerVisible, setFooterVisible] = useState(false);
+
+  const toggleFooter = () => {
+    setFooterVisible((prev) => !prev);
+  };
+
   const selectedTransaction = useMemo(
     () => transactions.find((tx) => tx.id === selectedTransactionId) ?? null,
     [transactions, selectedTransactionId],
@@ -362,36 +368,6 @@ export default function MultiStepTransactionFormPrototype() {
         </aside>
 
         <main className="rounded-3xl bg-white p-6 shadow-sm">
-          <div className="flex flex-col gap-4 border-b pb-6 lg:flex-row lg:items-center lg:justify-between">
-            <div>
-              <h2 className="text-2xl font-bold">
-                Multi-Step Transaction Workflow
-              </h2>
-              <p className="mt-1 text-sm text-gray-600">
-                Transaction{" "}
-                <span className="font-medium">{selectedTransaction.id}</span>
-              </p>
-            </div>
-
-            <div className="grid gap-3 md:grid-cols-3">
-              {renderStepIndicator("Customer & Donation Form", 1)}
-              {renderStepIndicator("Acknowledgment Letter Draft", 2)}
-              {renderStepIndicator("Email", 3)}
-            </div>
-          </div>
-
-          <div className="mt-6 rounded-2xl bg-gray-50 p-4 text-sm">
-            <div className="font-semibold">Selected Transaction Reference</div>
-            <div className="mt-2 grid gap-2 md:grid-cols-2">
-              <div>Donor: {selectedTransaction.donorName}</div>
-              <div>Email: {selectedTransaction.donorEmail}</div>
-              <div>Amount: ${selectedTransaction.amount.toFixed(2)}</div>
-              <div>Beneficiary: {selectedTransaction.beneficiary}</div>
-              <div>Donation Date: {selectedTransaction.donationDate}</div>
-              <div>Status: {selectedTransaction.status}</div>
-            </div>
-          </div>
-
           {selectedWorkflow.currentStep === 1 && (
             <section className="mt-6 space-y-4">
               <div>
@@ -757,7 +733,6 @@ export default function MultiStepTransactionFormPrototype() {
               />
             </section>
           )}
-
           <div className="mt-8 flex flex-wrap gap-3 border-t pt-6">
             <button
               onClick={goToPreviousStep}
@@ -792,22 +767,64 @@ export default function MultiStepTransactionFormPrototype() {
               </div>
             )}
           </div>
-
-          <div className="mt-6 grid gap-4 lg:grid-cols-3">
-            <ObjectPreviewCard
-              title="customerTransactionFormObject"
-              value={selectedWorkflow.customerTransactionFormObject}
-            />
-            <ObjectPreviewCard
-              title="acknowledgmentLetterFormObject"
-              value={selectedWorkflow.acknowledgmentLetterFormObject}
-            />
-            <ObjectPreviewCard
-              title="emailFormObject"
-              value={selectedWorkflow.emailFormObject}
-            />
-          </div>
+          <br />
+          <button onClick={toggleFooter}>
+            {footerVisible ? "Hide Code Details" : "Show Code Details"}
+          </button>
+          <br />
         </main>
+
+        {/* Footer should be hidden by default */}
+        {footerVisible && (
+          <footer>
+            <div className="flex flex-col gap-4 border-b pb-6 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <h2 className="text-2xl font-bold">
+                  Multi-Step Transaction Workflow
+                </h2>
+                <p className="mt-1 text-sm text-gray-600">
+                  Transaction{" "}
+                  <span className="font-medium">{selectedTransaction.id}</span>
+                </p>
+              </div>
+
+              <div className="grid gap-3 md:grid-cols-3">
+                {renderStepIndicator("Customer & Donation Form", 1)}
+                {renderStepIndicator("Acknowledgment Letter Draft", 2)}
+                {renderStepIndicator("Email", 3)}
+              </div>
+            </div>
+
+            <div className="mt-6 rounded-2xl bg-gray-50 p-4 text-sm">
+              <div className="font-semibold">
+                Selected Transaction Reference
+              </div>
+              <div className="mt-2 grid gap-2 md:grid-cols-2">
+                <div>Donor: {selectedTransaction.donorName}</div>
+                <div>Email: {selectedTransaction.donorEmail}</div>
+                <div>Amount: ${selectedTransaction.amount.toFixed(2)}</div>
+                <div>Beneficiary: {selectedTransaction.beneficiary}</div>
+                <div>Donation Date: {selectedTransaction.donationDate}</div>
+                <div>Status: {selectedTransaction.status}</div>
+              </div>
+            </div>
+
+            <div className="mt-6 grid gap-4 lg:grid-cols-3">
+              <ObjectPreviewCard
+                title="customerTransactionFormObject"
+                value={selectedWorkflow.customerTransactionFormObject}
+              />
+              <ObjectPreviewCard
+                title="acknowledgmentLetterFormObject"
+                value={selectedWorkflow.acknowledgmentLetterFormObject}
+              />
+              <ObjectPreviewCard
+                title="emailFormObject"
+                value={selectedWorkflow.emailFormObject}
+              />
+            </div>
+          </footer>
+        )}
       </div>
     </div>
   );
