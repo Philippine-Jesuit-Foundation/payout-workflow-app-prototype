@@ -357,7 +357,7 @@ export default function MultiStepTransactionFormPrototype() {
                     ${tx.amount.toFixed(2)}
                   </div>
                   <div className="mt-2 text-xs opacity-75">
-                    Current step: {workflow.currentStep}
+                    <strong className="current-step">Current step: {workflow.currentStep}</strong>
                   </div>
                 </button>
               );

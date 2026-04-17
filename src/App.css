@@ -17,6 +17,11 @@
   }
 }
 
+.current-step {
+  background-color: rgb(242, 255, 170);
+  font-weight: bold;
+}
+
 .hero {
   position: relative;
 
